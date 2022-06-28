@@ -16,8 +16,72 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section ><h2>Custom Email Templates </br> mit Magento 2.4.4</h2></section>
+				<section ><h2> Wer bin ich </h2>
+					<ul>
+						<li>Nils Preuß</li>
+						<li>Firegento e.V.'ler der ersten Stunde</li>
+						<li>Community und Stammtische seit vielen Jahren</li>
+						<li><a href="https://twitter.com/tutnix">@tutnix</a>
+						<li>Software Architekt Netz98</li>
+					</ul>
+				</section>
+				<section>
+				<section><h2>Änderungen mit Magento 2.4.4</h2>
+					<p>Patchnotes 2.4.4:</p>
+					<blockquote cite="https://devdocs.magento.com/guides/v2.4/release-notes/open-source-2-4-4.html">
+						"Email variable usage was deprecated back in 2.3.4 as part of a security risk mitigation in favor of a more strict variable syntax. This legacy behavior has been fully removed in this release as a continuation of that security risk mitigation."</blockquote> * Release 2.3.4: 28.1.2020
+				</section>
+				<section><h2> Danke für die Aufmerksamkeit</h2>
+					Fragen?
+				</section>
+				<section><h2>Spass beiseite &#128540; !!</h2></section>
+				</section>
+				<section>
+					<section><h2>Was wirklich passiert</h2></section>
+				</section><section>
+					<section data-markdown>
+## Technik
+`LegacyResolver` & `StrategyResolver` werden entfernt. D.h. ein Fallback auf `strict mode`
+
+Damit stehen keine direkten Methoden Aufrufe mehr zur Verfügung sondern nur noch einfache Werte.
+					</section>
+					<section><s>What the f***</s></br><h2>Wie bitte?</h2>
+						<pre class="fragment fade-in">
+<code>Früher: {{var subscriber.getConfirmationLink()}}
+Jetzt: {{var subscriber_data.confirmation_link}}
+Bitte darauf achten, keine Leerzeichen an den
+geschweiften Klammern '{{}}' zu verwenden:
+Richtig: {{var subscriber_data.confirmation_link}}
+Falsch: {{ var subscriber_data.confirmation_link }}</code></pre>
+					</section>
+					<section><h2>Todos</h2>
+						<ul>
+							<li>Base Templates sind angepasst worden.</li>
+							<li>Custom Templates (DB) müssen verändert werden. </li>
+							<li>Custom Templates (Theme) müssen verändert werden.</li>
+						</ul>
+						Sonst kann es passieren das die fehlerhaften Emails nicht mehr versandt werden!
+					</section>
+
+					<section><h2>Hilfe/Nützliches</h2>
+						Hilfe für "custom templates aus dem admin backend":
+						<ul>
+							<li>bin/magento dev:email:override-compatibility-check</li>
+							<li>bin/magento dev:email:newsletter-compatibility-check</li>
+						</ul>
+					</section><section>
+						Für Theme Templates: </br>"Thank you to work with Magento"</br>
+						Aber mit einer Suche nach<pre><code>\S*\.\S*\(\)</pre></code>kann man die Problemfälle finden. 
+				</section>
+				<section><h2>References</h2>
+					<a href="https://devdocs.magento.com/guides/v2.3/release-notes/release-notes-2-3-4-open-source.html">Release Notes 2.3.4</a></br>	
+					<a href="https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/templates/template-email-migration.html">Email Template Migration</a></br>
+					<a href="https://devdocs.magento.com/guides/v2.4/release-notes/2-4-3-p2.html">Release Notes 2.4.3-p2</a></br>
+					<a href="https://devdocs.magento.com/guides/v2.4/release-notes/open-source-2-4-4.html">Release Notes 2.4.4</a></br>
+				</section>
+				<section><h2>Danke</h2>
+					Fragen?</section>
 			</div>
 		</div>
 
